@@ -27,6 +27,11 @@ extension Double {
 class HealthManager : ObservableObject {
     var healthStore: HKHealthStore?
     @Published var activities: [String: Activity] = [:]
+    @Published var mockActivities: [String: Activity] = [
+        "todaySteps": Activity(id: 0, title: "Today's steps", subtitle: "Goal: 10.000", amount: "12.123", image: "figure.walk.motion"),
+        "todayCalories": Activity(id: 1, title: "Today calories", subtitle: "Goal: 600", amount: "1.241", image: "flame.fill")
+        
+    ]
     init() {
         if HKHealthStore.isHealthDataAvailable() {
             healthStore = HKHealthStore()
