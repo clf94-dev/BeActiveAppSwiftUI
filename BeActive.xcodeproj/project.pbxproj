@@ -13,6 +13,7 @@
 		32D77FE92A6D5DC60047B057 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 32D77FE82A6D5DC60047B057 /* Preview Assets.xcassets */; };
 		32D77FF02A6D5DF10047B057 /* BeActiveTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32D77FEF2A6D5DF10047B057 /* BeActiveTabView.swift */; };
 		32D77FF22A6D5E260047B057 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32D77FF12A6D5E260047B057 /* HomeView.swift */; };
+		32D77FF42A6D5F900047B057 /* ActivityCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32D77FF32A6D5F900047B057 /* ActivityCard.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -23,6 +24,7 @@
 		32D77FE82A6D5DC60047B057 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		32D77FEF2A6D5DF10047B057 /* BeActiveTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeActiveTabView.swift; sourceTree = "<group>"; };
 		32D77FF12A6D5E260047B057 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		32D77FF32A6D5F900047B057 /* ActivityCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityCard.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,6 +63,7 @@
 				32D77FE72A6D5DC60047B057 /* Preview Content */,
 				32D77FEF2A6D5DF10047B057 /* BeActiveTabView.swift */,
 				32D77FF12A6D5E260047B057 /* HomeView.swift */,
+				32D77FF32A6D5F900047B057 /* ActivityCard.swift */,
 			);
 			path = BeActive;
 			sourceTree = "<group>";
@@ -147,6 +150,7 @@
 				32D77FF22A6D5E260047B057 /* HomeView.swift in Sources */,
 				32D77FF02A6D5DF10047B057 /* BeActiveTabView.swift in Sources */,
 				32D77FE22A6D5DC50047B057 /* BeActiveApp.swift in Sources */,
+				32D77FF42A6D5F900047B057 /* ActivityCard.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
