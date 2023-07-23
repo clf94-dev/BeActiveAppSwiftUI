@@ -40,6 +40,8 @@ struct ActivityCard: View {
                 
                 Text(activity.amount)
                     .font(.system(size: 24))
+                    .minimumScaleFactor(0.6)
+                    .bold()
             }
             .padding()
             .cornerRadius(15)
