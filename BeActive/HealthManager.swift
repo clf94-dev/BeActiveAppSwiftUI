@@ -12,6 +12,14 @@ extension Date {
     static var startOfDay: Date {
         Calendar.current.startOfDay(for: Date())
     }
+    static var startOfWeek: Date {
+        let calendar = Calendar.current
+        var components = calendar.dateComponents([.yearForWeekOfYear, .weekOfYear], from: Date())
+        components.weekday = 2 // Monday
+        
+        return calendar.date(from: components)!
+        
+    }
 }
 
 extension Double {
@@ -38,18 +46,21 @@ class HealthManager : ObservableObject {
             
             let steps = HKQuantityType(.stepCount)
             let calories = HKQuantityType(.activeEnergyBurned)
-            let healthTypes: Set = [steps, calories]
+            let workout = HKObjectType.workoutType()
+            let healthTypes: Set = [steps, calories, workout]
             
             Task {
                 do {
                     try await healthStore?.requestAuthorization(toShare: [], read: healthTypes)
+                    fetchTodaySteps()
+                    fetchTodayCalories()
+                    fetchWeekStrengthStats()
                     
                 } catch {
                     print("error fetching the health data")
                 }
             }
-            fetchTodaySteps()
-            fetchTodayCalories()
+            
             
         }
     }
@@ -63,7 +74,7 @@ class HealthManager : ObservableObject {
             }
             
             let stepCount = quantity.doubleValue(for: .count())
-            let activity = Activity(id: 0, title: "Today's steps", subtitle: "Goal: 10.000", amount: stepCount.formattedString(), image: "figure.walk.motion")
+            let activity = Activity(id: 0, title: "Today's steps", subtitle: "Goal: 10.000", amount: stepCount.formattedString(), image: "figure.walk")
             DispatchQueue.main.async{
                 self.activities["todaySteps"] = activity
             }
@@ -85,6 +96,30 @@ class HealthManager : ObservableObject {
             DispatchQueue.main.async{
                 self.activities["todayCalories"] = activity
             }
+        }
+        healthStore?.execute(query)
+    }
+    func fetchWeekStrengthStats () {
+        let workout = HKSampleType.workoutType()
+        let timePredicate = HKQuery.predicateForSamples(withStart: .startOfWeek, end: Date())
+        let workoutPredicate = HKQuery.predicateForWorkouts(with: .functionalStrengthTraining)
+        let predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [timePredicate, workoutPredicate])
+        let query = HKSampleQuery(sampleType: workout, predicate: predicate, limit: 10, sortDescriptors: nil) { _, sample, error in
+            guard let workouts = sample as? [HKWorkout], error == nil else {
+                print("error fetching week strength training data")
+                return
+            }
+            var count: Int = 0
+            for workout in workouts {
+                let duration = Int(workout.duration)/60
+                count += duration
+                
+            }
+            let activity = Activity(id: 2, title: "Strength", subtitle: "This week", amount: "\(count) minutes", image: "figure.strengthtraining.functional")
+            DispatchQueue.main.async{
+                self.activities["weekRunning"] = activity
+            }
+            
         }
         healthStore?.execute(query)
     }
