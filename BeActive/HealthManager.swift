@@ -55,6 +55,7 @@ class HealthManager : ObservableObject {
                     fetchTodaySteps()
                     fetchTodayCalories()
                     fetchWeekStrengthStats()
+                    fetchWeekRowingStats()
                     
                 } catch {
                     print("error fetching the health data")
@@ -123,5 +124,33 @@ class HealthManager : ObservableObject {
         }
         healthStore?.execute(query)
     }
+    func fetchWeekRowingStats () {
+        let workout = HKSampleType.workoutType()
+        let timePredicate = HKQuery.predicateForSamples(withStart: .startOfWeek, end: Date())
+        let workoutPredicate = HKQuery.predicateForWorkouts(with: .rowing)
+        let predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [timePredicate, workoutPredicate])
+        let query = HKSampleQuery(sampleType: workout, predicate: predicate, limit: 10, sortDescriptors: nil) { _, sample, error in
+            guard let workouts = sample as? [HKWorkout], error == nil else {
+                print("error fetching week rowing training data")
+                return
+            }
+            var count: Int = 0
+            for workout in workouts {
+                print(workout.duration)
+                print(workout.sampleType)
+
+                let duration = Int(workout.duration)/60
+                count += duration
+                
+            }
+            let activity = Activity(id: 3, title: "Rowing", subtitle: "This week", amount: "\(count) minutes", image: "figure.rower")
+            DispatchQueue.main.async{
+                self.activities["weekRowing"] = activity
+            }
+            
+        }
+        healthStore?.execute(query)
+    }
+
     
 }
