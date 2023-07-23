@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct BeActiveTabView: View {
+    @EnvironmentObject var manager: HealthManager
     @State var selectedTab = "Home"
     var body: some View {
         TabView(selection: $selectedTab) {
@@ -16,6 +17,7 @@ struct BeActiveTabView: View {
                 .tabItem {
                     Image(systemName: "house")
                 }
+                .environmentObject(manager)
             ContentView()
                 .tag("Content")
                 .tabItem {

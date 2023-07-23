@@ -14,6 +14,7 @@
 		32D77FF02A6D5DF10047B057 /* BeActiveTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32D77FEF2A6D5DF10047B057 /* BeActiveTabView.swift */; };
 		32D77FF22A6D5E260047B057 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32D77FF12A6D5E260047B057 /* HomeView.swift */; };
 		32D77FF42A6D5F900047B057 /* ActivityCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32D77FF32A6D5F900047B057 /* ActivityCard.swift */; };
+		32D77FF62A6D62A80047B057 /* HealthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32D77FF52A6D62A80047B057 /* HealthManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -25,6 +26,8 @@
 		32D77FEF2A6D5DF10047B057 /* BeActiveTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeActiveTabView.swift; sourceTree = "<group>"; };
 		32D77FF12A6D5E260047B057 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		32D77FF32A6D5F900047B057 /* ActivityCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityCard.swift; sourceTree = "<group>"; };
+		32D77FF52A6D62A80047B057 /* HealthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthManager.swift; sourceTree = "<group>"; };
+		32D77FF72A6D67DD0047B057 /* BeActive.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = BeActive.entitlements; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,6 +60,7 @@
 		32D77FE02A6D5DC50047B057 /* BeActive */ = {
 			isa = PBXGroup;
 			children = (
+				32D77FF72A6D67DD0047B057 /* BeActive.entitlements */,
 				32D77FE12A6D5DC50047B057 /* BeActiveApp.swift */,
 				32D77FE32A6D5DC50047B057 /* ContentView.swift */,
 				32D77FE52A6D5DC60047B057 /* Assets.xcassets */,
@@ -64,6 +68,7 @@
 				32D77FEF2A6D5DF10047B057 /* BeActiveTabView.swift */,
 				32D77FF12A6D5E260047B057 /* HomeView.swift */,
 				32D77FF32A6D5F900047B057 /* ActivityCard.swift */,
+				32D77FF52A6D62A80047B057 /* HealthManager.swift */,
 			);
 			path = BeActive;
 			sourceTree = "<group>";
@@ -147,6 +152,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				32D77FE42A6D5DC50047B057 /* ContentView.swift in Sources */,
+				32D77FF62A6D62A80047B057 /* HealthManager.swift in Sources */,
 				32D77FF22A6D5E260047B057 /* HomeView.swift in Sources */,
 				32D77FF02A6D5DF10047B057 /* BeActiveTabView.swift in Sources */,
 				32D77FE22A6D5DC50047B057 /* BeActiveApp.swift in Sources */,
@@ -276,12 +282,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = BeActive/BeActive.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"BeActive/Preview Content\"";
 				DEVELOPMENT_TEAM = YUBAHJ7MY9;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHealthShareUsageDescription = "Please allow acces to enjoy all the features of this app";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -305,12 +313,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = BeActive/BeActive.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"BeActive/Preview Content\"";
 				DEVELOPMENT_TEAM = YUBAHJ7MY9;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHealthShareUsageDescription = "Please allow acces to enjoy all the features of this app";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
