@@ -32,15 +32,19 @@ class HealthManager : ObservableObject {
             healthStore = HKHealthStore()
             
             let steps = HKQuantityType(.stepCount)
-            let healthTypes: Set = [steps]
+            let calories = HKQuantityType(.activeEnergyBurned)
+            let healthTypes: Set = [steps, calories]
             
             Task {
                 do {
                     try await healthStore?.requestAuthorization(toShare: [], read: healthTypes)
+                    
                 } catch {
                     print("error fetching the health data")
                 }
             }
+            fetchTodaySteps()
+            fetchTodayCalories()
             
         }
     }
@@ -57,6 +61,24 @@ class HealthManager : ObservableObject {
             let activity = Activity(id: 0, title: "Today's steps", subtitle: "Goal: 10.000", amount: stepCount.formattedString(), image: "figure.walk.motion")
             DispatchQueue.main.async{
                 self.activities["todaySteps"] = activity
+            }
+        }
+        healthStore?.execute(query)
+    }
+    func fetchTodayCalories(){
+        let calories = HKQuantityType(.activeEnergyBurned)
+        let predicate = HKQuery.predicateForSamples(withStart: .startOfDay, end: Date())
+        
+        let query = HKStatisticsQuery(quantityType: calories, quantitySamplePredicate: predicate) { _, result, error in
+            guard let quantity = result?.sumQuantity(), error == nil else {
+                print("error fetching today's calories data")
+                return
+            }
+            
+            let calorieCount = quantity.doubleValue(for: .kilocalorie())
+            let activity = Activity(id: 1, title: "Today calories", subtitle: "Goal: 600", amount: calorieCount.formattedString(), image: "flame.fill")
+            DispatchQueue.main.async{
+                self.activities["todayCalories"] = activity
             }
         }
         healthStore?.execute(query)
