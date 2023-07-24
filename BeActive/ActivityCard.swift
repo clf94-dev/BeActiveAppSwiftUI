@@ -13,6 +13,7 @@ struct Activity {
     let subtitle: String
     let amount: String
     let image: String
+    let tintColor: Color
 
 }
 
@@ -20,8 +21,9 @@ struct ActivityCard: View {
     @State var activity: Activity
     var body: some View {
         ZStack {
-            Color(.systemGray6)
+            Color(UIColor(activity.tintColor))
                 .cornerRadius(15)
+                .opacity(0.3)
             VStack (spacing: 15){
                 HStack (alignment: .top) {
                     VStack(alignment: .leading, spacing: 5) {
@@ -34,7 +36,7 @@ struct ActivityCard: View {
                     }
                     Spacer()
                     Image(systemName: activity.image)
-                        .foregroundColor(.green)
+                        .foregroundColor(activity.tintColor)
                 }
                 
                 
@@ -53,6 +55,6 @@ struct ActivityCard: View {
 
 struct ActivityCard_Previews: PreviewProvider {
     static var previews: some View {
-        ActivityCard(activity: Activity(id: 0, title: "Daily Steps", subtitle: "Goal: 10.000", amount: "6.234", image: "figure.walk.motion"))
+        ActivityCard(activity: Activity(id: 0, title: "Daily Steps", subtitle: "Goal: 10.000", amount: "6.234", image: "figure.walk.motion", tintColor: .green))
     }
 }
