@@ -112,7 +112,7 @@ class HealthManager : ObservableObject {
             }
             
             let stepCount = quantity.doubleValue(for: .count())
-            let activity = Activity(id: 0, title: "Today steps", subtitle: "Goal: 10.000", amount: stepCount.formattedString(), image: "shoeprints.fill", tintColor: .green)
+            let activity = Activity(id: 0, title: "Today steps", subtitle: "Goal: \(10.000)", amount: stepCount.formattedString(), image: "shoeprints.fill", tintColor: .green)
             DispatchQueue.main.async{
                 self.activities["todaySteps"] = activity
             }
@@ -130,7 +130,7 @@ class HealthManager : ObservableObject {
             }
             
             let calorieCount = quantity.doubleValue(for: .kilocalorie())
-            let activity = Activity(id: 1, title: "Today calories", subtitle: "Goal: 600", amount: calorieCount.formattedString(), image: "flame.fill", tintColor: .red)
+            let activity = Activity(id: 1, title: "Today calories", subtitle: "Goal: \(600)", amount: calorieCount.formattedString(), image: "flame.fill", tintColor: .red)
             DispatchQueue.main.async{
                 self.activities["todayCalories"] = activity
             }
@@ -155,11 +155,11 @@ class HealthManager : ObservableObject {
                 countEnergy += Int(workout.totalEnergyBurned!.doubleValue(for: .kilocalorie()))
                 
             }
-            let activity = Activity(id: 2, title: "Strength", subtitle: "This week", amount: "\(count) minutes", image: "figure.strengthtraining.functional", tintColor: .orange)
+            let activity = Activity(id: 2, title: "strength", subtitle: "this week", amount: "\(count) minutes", image: "figure.strengthtraining.functional", tintColor: .orange)
             DispatchQueue.main.async{
                 self.activities["weekStrength"] = activity
             }
-            let activityEnergy = Activity(id: 3, title: "Strength", subtitle: "Calories this week", amount: "\(countEnergy) kcal", image: "figure.strengthtraining.functional", tintColor: .orange)
+            let activityEnergy = Activity(id: 3, title: "strength", subtitle: "calories this week", amount: "\(countEnergy) kcal", image: "figure.strengthtraining.functional", tintColor: .orange)
             DispatchQueue.main.async{
                 self.activities["weekStrengthEnergy"] = activityEnergy
             }
@@ -185,11 +185,11 @@ class HealthManager : ObservableObject {
                 countEnergy += Int(workout.totalEnergyBurned!.doubleValue(for: .kilocalorie()))
                 
             }
-            let activity = Activity(id: 4, title: "Rowing", subtitle: "This week", amount: "\(count) minutes", image: "figure.rower", tintColor: .cyan)
+            let activity = Activity(id: 4, title: "rowing", subtitle: "this week", amount: "\(count) minutes", image: "figure.rower", tintColor: .cyan)
             DispatchQueue.main.async{
                 self.activities["weekRowing"] = activity
             }
-            let activityEnergy = Activity(id: 5, title: "Rowing", subtitle: "Calories this week", amount: "\(countEnergy) kcal", image: "figure.rower", tintColor: .cyan)
+            let activityEnergy = Activity(id: 5, title: "rowing", subtitle: "calories this week", amount: "\(countEnergy) kcal", image: "figure.rower", tintColor: .cyan)
             DispatchQueue.main.async{
                 self.activities["weekRowingEnergy"] = activityEnergy
             }
@@ -269,20 +269,20 @@ class HealthManager : ObservableObject {
                 
                
             }
-            let activityStrength = Activity(id: 2, title: "Strength", subtitle: "This week", amount: "\(countStrength) minutes", image: "figure.strengthtraining.functional", tintColor: .orange)
+            let activityStrength = Activity(id: 2, title: "strength", subtitle: "this week", amount: "\(countStrength) minutes", image: "figure.strengthtraining.functional", tintColor: .orange)
             
-            let activityStrengthEnergy = Activity(id: 3, title: "Strength", subtitle: "Calories this week", amount: "\(countEnergyStrength) kcal", image: "figure.strengthtraining.functional", tintColor: .orange)
+            let activityStrengthEnergy = Activity(id: 3, title: "strength", subtitle: "calories this week", amount: "\(countEnergyStrength) kcal", image: "figure.strengthtraining.functional", tintColor: .orange)
             
-            let activityRowing = Activity(id: 4, title: "Rowing", subtitle: "This week", amount: "\(countRowing) minutes", image: "figure.rower", tintColor: .cyan)
+            let activityRowing = Activity(id: 4, title: "rowing", subtitle: "this week", amount: "\(countRowing) minutes", image: "figure.rower", tintColor: .cyan)
             
-            let activityRowingEnergy = Activity(id: 5, title: "Rowing", subtitle: "Calories this week", amount: "\(countEnergyRowing) kcal", image: "figure.rower", tintColor: .cyan)
+            let activityRowingEnergy = Activity(id: 5, title: "rowing", subtitle: "calories this week", amount: "\(countEnergyRowing) kcal", image: "figure.rower", tintColor: .cyan)
             
-            let activityCore = Activity(id: 6, title: "Core training", subtitle: "This week", amount: "\(countCore) minutes", image: "figure.core.training", tintColor: .purple)
+            let activityCore = Activity(id: 6, title: "core training", subtitle: "this week", amount: "\(countCore) minutes", image: "figure.core.training", tintColor: .purple)
             
-            let activityCoreEnergy = Activity(id: 7, title: "Core training", subtitle: "Calories this week", amount: "\(countEnergyCore) kcal", image: "figure.core.training", tintColor: .purple)
-            let activityWalking = Activity(id: 8, title: "Walking", subtitle: "This week", amount: "\(countWalking) minutes", image: "figure.walk.motion", tintColor: .mint)
+            let activityCoreEnergy = Activity(id: 7, title: "core training", subtitle: "calories this week", amount: "\(countEnergyCore) kcal", image: "figure.core.training", tintColor: .purple)
+            let activityWalking = Activity(id: 8, title: "walking", subtitle: "this week", amount: "\(countWalking) minutes", image: "figure.walk.motion", tintColor: .mint)
             
-            let activityWalkingEnergy = Activity(id: 9, title: "Walking", subtitle: "Distance this week", amount: "\(countDistanceWalking) m", image: "figure.walk.motion", tintColor: .mint)
+            let activityWalkingEnergy = Activity(id: 9, title: "walking", subtitle: "distance this week", amount: "\(countDistanceWalking) m", image: "figure.walk.motion", tintColor: .mint)
             
 
             

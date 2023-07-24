@@ -1,0 +1,22 @@
+/* 
+  Localizable.strings
+  BeActive
+
+  Created by Carmen Lucas on 24/7/23.
+  
+*/
+"welcome" = "Welcome";
+"strength" = "Strength";
+"rowing" = "Rowing";
+"core training" = "Core Training";
+"walking" = "Walking";
+"%@ minutes" = "%@ minutes";
+"%@ kcal" = "%@ kcal";
+"this week" = "This week";
+"calories this week" = "Calories this week";
+"distance this week" = "Distance this week";
+"today steps" = "Today steps";
+"today calories" = "Today calories";
+"Goal: %@" = "Goal: %@" ;
+
+

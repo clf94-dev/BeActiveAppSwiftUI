@@ -27,10 +27,10 @@ struct ActivityCard: View {
             VStack (spacing: 15){
                 HStack (alignment: .top) {
                     VStack(alignment: .leading, spacing: 5) {
-                        Text(activity.title)
+                        Text(LocalizedStringKey(activity.title))
                             .font(.system(size: 16))
                         
-                        Text(activity.subtitle)
+                        Text(LocalizedStringKey(activity.subtitle))
                             .font(.system(size: 12))
                             .foregroundColor(.gray)
                     }
@@ -56,5 +56,6 @@ struct ActivityCard: View {
 struct ActivityCard_Previews: PreviewProvider {
     static var previews: some View {
         ActivityCard(activity: Activity(id: 0, title: "Daily Steps", subtitle: "Goal: 10.000", amount: "6.234", image: "figure.walk.motion", tintColor: .green))
+            .environment(\.locale, .init(identifier: "es"))
     }
 }
