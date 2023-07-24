@@ -41,6 +41,8 @@ class HealthManager : ObservableObject {
         
     ]
     
+    @Published var oneMonthChartData = [DailyStepView]()
+    
     init() {
         if HKHealthStore.isHealthDataAvailable() {
             healthStore = HKHealthStore()

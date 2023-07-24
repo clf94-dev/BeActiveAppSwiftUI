@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		324FC4CB2A6E4AD9009FD882 /* ChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 324FC4CA2A6E4AD9009FD882 /* ChartView.swift */; };
 		32D77FE22A6D5DC50047B057 /* BeActiveApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32D77FE12A6D5DC50047B057 /* BeActiveApp.swift */; };
 		32D77FE42A6D5DC50047B057 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32D77FE32A6D5DC50047B057 /* ContentView.swift */; };
 		32D77FE62A6D5DC60047B057 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 32D77FE52A6D5DC60047B057 /* Assets.xcassets */; };
@@ -18,6 +19,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		324FC4CA2A6E4AD9009FD882 /* ChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartView.swift; sourceTree = "<group>"; };
 		32D77FDE2A6D5DC50047B057 /* BeActive.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BeActive.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		32D77FE12A6D5DC50047B057 /* BeActiveApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeActiveApp.swift; sourceTree = "<group>"; };
 		32D77FE32A6D5DC50047B057 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -69,6 +71,7 @@
 				32D77FF12A6D5E260047B057 /* HomeView.swift */,
 				32D77FF32A6D5F900047B057 /* ActivityCard.swift */,
 				32D77FF52A6D62A80047B057 /* HealthManager.swift */,
+				324FC4CA2A6E4AD9009FD882 /* ChartView.swift */,
 			);
 			path = BeActive;
 			sourceTree = "<group>";
@@ -154,6 +157,7 @@
 				32D77FE42A6D5DC50047B057 /* ContentView.swift in Sources */,
 				32D77FF62A6D62A80047B057 /* HealthManager.swift in Sources */,
 				32D77FF22A6D5E260047B057 /* HomeView.swift in Sources */,
+				324FC4CB2A6E4AD9009FD882 /* ChartView.swift in Sources */,
 				32D77FF02A6D5DF10047B057 /* BeActiveTabView.swift in Sources */,
 				32D77FE22A6D5DC50047B057 /* BeActiveApp.swift in Sources */,
 				32D77FF42A6D5F900047B057 /* ActivityCard.swift in Sources */,
