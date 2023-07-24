@@ -57,13 +57,13 @@ class HealthManager : ObservableObject {
             let steps = HKQuantityType(.stepCount)
             let calories = HKQuantityType(.activeEnergyBurned)
             let workout = HKObjectType.workoutType()
-            let healthTypes: Set = [steps, calories, workout]
+            let water = HKQuantityType(.dietaryWater)
+            let healthTypes: Set = [steps, calories, workout, water]
             
             Task {
                 do {
                     try await healthStore?.requestAuthorization(toShare: [], read: healthTypes)
-                    fetchTodaySteps()
-                    fetchTodayCalories()
+                   fetchTodayStats()
                     // fetchWeekStrengthStats()
                     // fetchWeekRowingStats()
                     // fetchWeekCoreStats()
@@ -103,6 +103,13 @@ class HealthManager : ObservableObject {
         healthStore?.execute(query)
         
     }
+    
+    // MARK: Today's stats
+    func fetchTodayStats () {
+        fetchTodaySteps()
+        fetchTodayCalories()
+        fetchTodayWaterIntake()
+    }
     func fetchTodaySteps () {
         let steps = HKQuantityType(.stepCount)
         let predicate = HKQuery.predicateForSamples(withStart: .startOfDay, end: Date())
@@ -138,6 +145,27 @@ class HealthManager : ObservableObject {
         }
         healthStore?.execute(query)
     }
+    func fetchTodayWaterIntake() {
+        let water = HKQuantityType(.dietaryWater)
+        let predicate = HKQuery.predicateForSamples(withStart: .startOfDay, end: Date())
+        
+        let query = HKStatisticsQuery(quantityType: water, quantitySamplePredicate: predicate) { _, result, error in
+            guard let quantity = result?.sumQuantity(), error == nil else {
+                print("error fetching today's water intake data")
+                return
+            }
+            
+            let waterCount = quantity.doubleValue(for: .liter())
+            let activity = Activity(id: 2, title: "water", subtitle: "Goal: \(600)", amount: waterCount.formattedString(), image: "water.fill", tintColor: .blue)
+            DispatchQueue.main.async{
+                self.activities["todayWater"] = activity
+            }
+
+        }
+        healthStore?.execute(query)
+    }
+    
+    // MARK: Workouts weekly stats
     func fetchWeekStrengthStats () {
         let workout = HKSampleType.workoutType()
         let timePredicate = HKQuery.predicateForSamples(withStart: .startOfWeek, end: Date())
@@ -270,20 +298,20 @@ class HealthManager : ObservableObject {
                 
                
             }
-            let activityStrength = Activity(id: 2, title: "strength", subtitle: "this week", amount: "\(countStrength) minutes", image: "figure.strengthtraining.functional", tintColor: .orange)
+            let activityStrength = Activity(id: 5, title: "strength", subtitle: "this week", amount: "\(countStrength) minutes", image: "figure.strengthtraining.functional", tintColor: .orange)
             
-            let activityStrengthEnergy = Activity(id: 3, title: "strength", subtitle: "calories this week", amount: "\(countEnergyStrength) kcal", image: "figure.strengthtraining.functional", tintColor: .orange)
+            let activityStrengthEnergy = Activity(id: 6, title: "strength", subtitle: "calories this week", amount: "\(countEnergyStrength) kcal", image: "figure.strengthtraining.functional", tintColor: .orange)
             
-            let activityRowing = Activity(id: 4, title: "rowing", subtitle: "this week", amount: "\(countRowing) minutes", image: "figure.rower", tintColor: .cyan)
+            let activityRowing = Activity(id: 7, title: "rowing", subtitle: "this week", amount: "\(countRowing) minutes", image: "figure.rower", tintColor: .cyan)
             
-            let activityRowingEnergy = Activity(id: 5, title: "rowing", subtitle: "calories this week", amount: "\(countEnergyRowing) kcal", image: "figure.rower", tintColor: .cyan)
+            let activityRowingEnergy = Activity(id: 8, title: "rowing", subtitle: "calories this week", amount: "\(countEnergyRowing) kcal", image: "figure.rower", tintColor: .cyan)
             
-            let activityCore = Activity(id: 6, title: "core training", subtitle: "this week", amount: "\(countCore) minutes", image: "figure.core.training", tintColor: .purple)
+            let activityCore = Activity(id: 9, title: "core training", subtitle: "this week", amount: "\(countCore) minutes", image: "figure.core.training", tintColor: .purple)
             
-            let activityCoreEnergy = Activity(id: 7, title: "core training", subtitle: "calories this week", amount: "\(countEnergyCore) kcal", image: "figure.core.training", tintColor: .purple)
-            let activityWalking = Activity(id: 8, title: "walking", subtitle: "this week", amount: "\(countWalking) minutes", image: "figure.walk.motion", tintColor: .mint)
+            let activityCoreEnergy = Activity(id: 10, title: "core training", subtitle: "calories this week", amount: "\(countEnergyCore) kcal", image: "figure.core.training", tintColor: .purple)
+            let activityWalking = Activity(id: 11, title: "walking", subtitle: "this week", amount: "\(countWalking) minutes", image: "figure.walk.motion", tintColor: .mint)
             
-            let activityWalkingEnergy = Activity(id: 9, title: "walking", subtitle: "distance this week", amount: "\(countDistanceWalking) m", image: "figure.walk.motion", tintColor: .mint)
+            let activityWalkingEnergy = Activity(id: 12, title: "walking", subtitle: "distance this week", amount: "\(countDistanceWalking) m", image: "figure.walk.motion", tintColor: .mint)
             
 
             
