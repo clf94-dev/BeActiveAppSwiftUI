@@ -58,7 +58,9 @@ class HealthManager : ObservableObject {
             let calories = HKQuantityType(.activeEnergyBurned)
             let workout = HKObjectType.workoutType()
             let water = HKQuantityType(.dietaryWater)
-            let healthTypes: Set = [steps, calories, workout, water]
+            let exercise = HKQuantityType(.appleExerciseTime)
+
+            let healthTypes: Set = [steps, calories, workout, water, exercise]
             
             Task {
                 do {
@@ -108,7 +110,8 @@ class HealthManager : ObservableObject {
     func fetchTodayStats () {
         fetchTodaySteps()
         fetchTodayCalories()
-        fetchTodayWaterIntake()
+        // fetchTodayWaterIntake()
+        fetchTodayExerciseTime()
     }
     func fetchTodaySteps () {
         let steps = HKQuantityType(.stepCount)
@@ -164,6 +167,26 @@ class HealthManager : ObservableObject {
         }
         healthStore?.execute(query)
     }
+    func fetchTodayExerciseTime() {
+        let exerciseTime = HKQuantityType(.appleExerciseTime)
+        let predicate = HKQuery.predicateForSamples(withStart: .startOfDay, end: Date())
+        
+        let query = HKStatisticsQuery(quantityType: exerciseTime, quantitySamplePredicate: predicate) { _, result, error in
+            guard let quantity = result?.sumQuantity(), error == nil else {
+                print("error fetching today's exercise time data")
+                return
+            }
+            
+            let exerciseTimeCount = quantity.doubleValue(for: .minute())
+            let activity = Activity(id: 3, title: "exercise time", subtitle: "Goal: \(30)", amount: exerciseTimeCount.formattedString(), image: "figure.run", tintColor: .green)
+            DispatchQueue.main.async{
+                self.activities["todayExerciseTime"] = activity
+            }
+
+        }
+        healthStore?.execute(query)
+    }
+
     
     // MARK: Workouts weekly stats
     func fetchWeekStrengthStats () {
