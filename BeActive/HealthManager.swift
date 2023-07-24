@@ -112,7 +112,7 @@ class HealthManager : ObservableObject {
             }
             
             let stepCount = quantity.doubleValue(for: .count())
-            let activity = Activity(id: 0, title: "Today steps", subtitle: "Goal: \(10.000)", amount: stepCount.formattedString(), image: "shoeprints.fill", tintColor: .green)
+            let activity = Activity(id: 0, title: "today steps", subtitle: "Goal: \(10000)", amount: stepCount.formattedString(), image: "shoeprints.fill", tintColor: .green)
             DispatchQueue.main.async{
                 self.activities["todaySteps"] = activity
             }
@@ -130,7 +130,7 @@ class HealthManager : ObservableObject {
             }
             
             let calorieCount = quantity.doubleValue(for: .kilocalorie())
-            let activity = Activity(id: 1, title: "Today calories", subtitle: "Goal: \(600)", amount: calorieCount.formattedString(), image: "flame.fill", tintColor: .red)
+            let activity = Activity(id: 1, title: "today calories", subtitle: "Goal: \(600)", amount: calorieCount.formattedString(), image: "flame.fill", tintColor: .red)
             DispatchQueue.main.async{
                 self.activities["todayCalories"] = activity
             }
