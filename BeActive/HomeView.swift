@@ -46,6 +46,9 @@ struct HomeView: View {
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
         }
+        .refreshable {
+            await manager.refreshData()
+        }
     }
     
     // func startWelcomeTimer() {

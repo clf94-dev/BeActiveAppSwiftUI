@@ -305,7 +305,21 @@ class HealthManager : ObservableObject {
     }
 
     
+    // MARK: Refresh data outside of init
+
+    func refreshData() {
+        fetchTodaySteps()
+        fetchTodayCalories()
+        // fetchWeekStrengthStats()
+        // fetchWeekRowingStats()
+        // fetchWeekCoreStats()
+        fetchCurrentWeekWorkoutStats()
+        fetchPastMonthStepData()
+    }
+    
 }
+
+
 
 // MARK: Chart Data
 
