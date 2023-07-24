@@ -15,6 +15,8 @@
 "this week" = "Esta semana";
 "calories this week" = "Calorias esta semana";
 "distance this week" = "Distancia esta semana";
-"today steps" = "Pasos hoy";
-"today calories" = "Calorias hoy";
+"today steps" = "Pasos";
+"today calories" = "Calorias";
 "Goal: %@" = "Objetivo: %@";
+"todays stats" = "Resumen hoy";
+"this week stats" = "Resumen de esta semana";

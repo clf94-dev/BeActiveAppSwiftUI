@@ -25,7 +25,7 @@ struct HomeView: View {
                        // startWelcomeTimer()
                     // }
                 
-                Text("Today's stats")
+                Text("todays stats")
                     .padding()
                     .foregroundColor(.secondary)
                 LazyVGrid(columns: Array(repeating: GridItem(spacing: 10), count: 2)) {
@@ -34,7 +34,7 @@ struct HomeView: View {
                         
                     }
                 }.padding(.horizontal)
-                Text("this week's stats")
+                Text("this week stats")
                     .padding()
                     .foregroundColor(.secondary)
                 LazyVGrid(columns: Array(repeating: GridItem(spacing: 10), count: 2)) {
@@ -47,7 +47,7 @@ struct HomeView: View {
             .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
         }
         .refreshable {
-            await manager.refreshData()
+            manager.refreshData()
         }
     }
     

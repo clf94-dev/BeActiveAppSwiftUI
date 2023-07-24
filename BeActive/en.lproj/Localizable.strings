@@ -15,8 +15,10 @@
 "this week" = "This week";
 "calories this week" = "Calories this week";
 "distance this week" = "Distance this week";
-"today steps" = "Today steps";
-"today calories" = "Today calories";
+"today steps" = "Steps";
+"today calories" = "Calories";
 "Goal: %@" = "Goal: %@" ;
+"todays stats" = "Today's stats";
+"this week stats" = "This week's stats";
 
 
