@@ -24,6 +24,9 @@ struct ChartView: View {
                         BarMark(x: .value(daily.date.formatted(), daily.date, unit: .day), y: .value("Steps", daily.stepCount))
                     }
                 }
+                .foregroundColor(.green)
+                .frame(height: 350)
+                .padding(.horizontal)
             } else {
                 ProgressView()
             }

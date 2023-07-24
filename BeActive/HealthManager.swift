@@ -20,6 +20,12 @@ extension Date {
         return calendar.date(from: components)!
         
     }
+    static var oneMonthAgo: Date {
+        let calendar = Calendar.current
+        let oneMonth = calendar.date(byAdding: .month, value: -1, to: Date())
+        
+        return calendar.startOfDay(for: oneMonth!)
+    }
 }
 
 extension Double {
@@ -61,6 +67,7 @@ class HealthManager : ObservableObject {
                     // fetchWeekRowingStats()
                     // fetchWeekCoreStats()
                     fetchCurrentWeekWorkoutStats()
+                    fetchPastMonthStepData()
                     
                 } catch {
                     print("error fetching the health data")
@@ -69,6 +76,31 @@ class HealthManager : ObservableObject {
             
             
         }
+    }
+    func fetchDailySteps(startDate: Date, completion: @escaping ([DailyStepView]) -> Void) {
+        let steps = HKQuantityType(.stepCount)
+        let interval = DateComponents(day: 1)
+        let query = HKStatisticsCollectionQuery(quantityType: steps, quantitySamplePredicate: nil, anchorDate: startDate, intervalComponents: interval)
+        
+        query.initialResultsHandler = { query, result, error in
+            guard let result = result else {
+                completion([])
+                return
+            }
+            
+            var dailySteps = [DailyStepView]()
+            
+            result.enumerateStatistics(from: startDate, to: Date()) { statistics, stop in
+                
+                dailySteps.append(DailyStepView(date: statistics.startDate, stepCount: statistics.sumQuantity()?.doubleValue(for: .count()) ?? 0.00))
+            }
+            
+            completion(dailySteps)
+            
+            
+        }
+        healthStore?.execute(query)
+        
     }
     func fetchTodaySteps () {
         let steps = HKQuantityType(.stepCount)
@@ -271,5 +303,18 @@ class HealthManager : ObservableObject {
         
     }
 
+    
+}
+
+// MARK: Chart Data
+
+extension HealthManager {
+    func fetchPastMonthStepData() {
+        fetchDailySteps(startDate: .oneMonthAgo) { dailySteps in
+            DispatchQueue.main.async {
+                self.oneMonthChartData = dailySteps
+            }
+        }
+    }
     
 }
