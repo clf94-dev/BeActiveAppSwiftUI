@@ -59,8 +59,9 @@ class HealthManager : ObservableObject {
             let workout = HKObjectType.workoutType()
             let water = HKQuantityType(.dietaryWater)
             let exercise = HKQuantityType(.appleExerciseTime)
+            let stairs = HKQuantityType(.flightsClimbed)
 
-            let healthTypes: Set = [steps, calories, workout, water, exercise]
+            let healthTypes: Set = [steps, calories, workout, water, exercise, stairs]
             
             Task {
                 do {
@@ -112,6 +113,7 @@ class HealthManager : ObservableObject {
         fetchTodayCalories()
         // fetchTodayWaterIntake()
         fetchTodayExerciseTime()
+        fetchTodayFlightStairs()
     }
     func fetchTodaySteps () {
         let steps = HKQuantityType(.stepCount)
@@ -181,6 +183,26 @@ class HealthManager : ObservableObject {
             let activity = Activity(id: 3, title: "exercise time", subtitle: "Goal: \(30)", amount: exerciseTimeCount.formattedString(), image: "figure.run", tintColor: .green)
             DispatchQueue.main.async{
                 self.activities["todayExerciseTime"] = activity
+            }
+
+        }
+        healthStore?.execute(query)
+    }
+    
+    func fetchTodayFlightStairs() {
+        let stairsClimbed = HKQuantityType(.flightsClimbed)
+        let predicate = HKQuery.predicateForSamples(withStart: .startOfDay, end: Date())
+        
+        let query = HKStatisticsQuery(quantityType: stairsClimbed, quantitySamplePredicate: predicate) { _, result, error in
+            guard let quantity = result?.sumQuantity(), error == nil else {
+                print("error fetching today's stairs climbed data")
+                return
+            }
+            
+            let flightStairsCount = quantity.doubleValue(for: .count())
+            let activity = Activity(id: 4, title: "floors ascend", subtitle: "Goal: \(30)", amount: flightStairsCount.formattedString(), image: "figure.stairs", tintColor: .yellow)
+            DispatchQueue.main.async{
+                self.activities["todayFloors"] = activity
             }
 
         }
