@@ -41,6 +41,7 @@ extension Double {
 class HealthManager : ObservableObject {
     var healthStore: HKHealthStore?
     @Published var activities: [String: Activity] = [:]
+    @Published var weekActivities: [String: Activity] = [:]
     @Published var mockActivities: [String: Activity] = [
         "todaySteps": Activity(id: 0, title: "Today's steps", subtitle: "Goal: 10.000", amount: "12.123", image: "shoeprints.fill", tintColor: .green),
         "todayCalories": Activity(id: 1, title: "Today calories", subtitle: "Goal: 600", amount: "1.241", image: "flame.fill", tintColor: .red)
@@ -288,14 +289,14 @@ class HealthManager : ObservableObject {
             
 
             DispatchQueue.main.async{
-                self.activities["weekStrength"] = activityStrength
-                self.activities["weekStrengthEnergy"] = activityStrengthEnergy
-                self.activities["weekRowing"] = activityRowing
-                self.activities["weekRowingEnergy"] = activityRowingEnergy
-                self.activities["weekCore"] = activityCore
-                self.activities["weekCoreEnergy"] = activityCoreEnergy
-                self.activities["weekWalking"] = activityWalking
-                self.activities["weekWalkingEnergy"] = activityWalkingEnergy
+                self.weekActivities["weekStrength"] = activityStrength
+                self.weekActivities["weekStrengthEnergy"] = activityStrengthEnergy
+                self.weekActivities["weekRowing"] = activityRowing
+                self.weekActivities["weekRowingEnergy"] = activityRowingEnergy
+                self.weekActivities["weekCore"] = activityCore
+                self.weekActivities["weekCoreEnergy"] = activityCoreEnergy
+                self.weekActivities["weekWalking"] = activityWalking
+                self.weekActivities["weekWalkingEnergy"] = activityWalkingEnergy
             }
             
         }

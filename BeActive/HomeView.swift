@@ -15,6 +15,7 @@ struct HomeView: View {
         
         ScrollView {
             VStack (alignment: .leading){
+                Spacer()
                 Text("welcome")
                     .font(.largeTitle)
                     .padding()
@@ -23,8 +24,21 @@ struct HomeView: View {
                     //.onAppear{
                        // startWelcomeTimer()
                     // }
-                LazyVGrid(columns: Array(repeating: GridItem(spacing: 20), count: 2)) {
+                
+                Text("Today's stats")
+                    .padding()
+                    .foregroundColor(.secondary)
+                LazyVGrid(columns: Array(repeating: GridItem(spacing: 10), count: 2)) {
                     ForEach(manager.activities.sorted(by: { $0.value.id <  $1.value.id} ), id: \.key){ item in
+                        ActivityCard(activity: item.value)
+                        
+                    }
+                }.padding(.horizontal)
+                Text("this week's stats")
+                    .padding()
+                    .foregroundColor(.secondary)
+                LazyVGrid(columns: Array(repeating: GridItem(spacing: 10), count: 2)) {
+                    ForEach(manager.weekActivities.sorted(by: { $0.value.id <  $1.value.id} ), id: \.key){ item in
                         ActivityCard(activity: item.value)
                         
                     }
