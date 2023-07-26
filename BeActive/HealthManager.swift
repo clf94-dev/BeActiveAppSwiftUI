@@ -112,7 +112,7 @@ class HealthManager : ObservableObject {
     func fetchTodayStats () {
         fetchTodaySteps()
         fetchTodayCalories()
-        // fetchTodayWaterIntake()
+        fetchTodayWaterIntake()
         fetchTodayExerciseTime()
         fetchTodayFlightStairs()
         fetchTodayTotalDistance()
@@ -162,8 +162,8 @@ class HealthManager : ObservableObject {
                 return
             }
             
-            let waterCount = quantity.doubleValue(for: .liter())
-            let activity = Activity(id: 2, title: "water", subtitle: "Goal: \(600)", amount: waterCount.formattedString(), image: "water.fill", tintColor: .blue)
+            let waterCount = quantity.doubleValue(for: .literUnit(with: .milli))
+            let activity = Activity(id: 2, title: "water", subtitle: "Goal: \(600)", amount: "\(waterCount.formattedString()) mL", image: "drop.fill", tintColor: .blue)
             DispatchQueue.main.async{
                 self.activities["todayWater"] = activity
             }
